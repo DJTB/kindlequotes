@@ -5,7 +5,7 @@ const path = require('path');
 const args = require('args');
 
 args
-  .option('infile', 'Filename to read kindle quotes, default is my_clippings.txt', 'quotes.txt')
+  .option('infile', 'Filename to read kindle quotes, default is quotes.txt', 'quotes.txt')
   .option('outfile', 'Filename to write JSON, default is quotes.json', 'quotes.json')
   .option('dirname', 'Path to write outfile to, default is pwd', __dirname);
 
