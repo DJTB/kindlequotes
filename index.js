@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// TODO: package up as an NPM module so it can be -g installed and run from path with node
+
 const fs = require('fs');
 const path = require('path');
 const args = require('args');
@@ -17,10 +19,11 @@ const flags = args.parse(process.argv);
 /////////////
 
 function stripBOM(str) { return str.replace(/[\u200B-\u200D\uFEFF]/g, ''); }
-function parseTitle(str) { return stripBOM(str).match(/.+(?=\s\()/)[0]; }
+function parseTitle(str) { return str.match(/.+(?=\s\()/)[0]; }
 function swapWords(w1, w2) { return `${w2} ${w1}`; }
 function last(arr) { return arr[arr.length - 1]; }
-function isEmptyOrDuplicateOf(a, b) { return a == null || a === '' || a === b; }
+function isEmpty(x) { return x === '' || x == null; }
+function isDuplicate(a, b) { return a === b; }
 
 /**
  * Reduce all occurrences of multiple spaces to a single space char.
@@ -47,8 +50,10 @@ function parseAuthor(str) {
   return authors.join(', ');
 }
 
+// TODO: use moment.js or roll-your-own date parsing into a proper JS Date() object.
 function parseDate(str) {
   // kindle human readable dates follow 'on ' and end with ' HH:MM:SS'
+  // NOTE: keep the time in string if parsing to a JS date
   const re = /\son\s(.*)(?=\s\d\d:)/;
 
   return str.match(re)[1];
@@ -57,7 +62,7 @@ function parseDate(str) {
 function parseLine(prev, quote, index) {
   const [header, date, content] = quote.trim().split(/\s?\n\s?/);
 
-  if (prev.length && isEmptyOrDuplicateOf(content, last(prev).content)) return prev;
+  if (isEmpty(content) || prev.length && isDuplicate(content, last(prev).content)) return prev;
 
   return prev.concat({
     title: parseTitle(header),
@@ -66,6 +71,14 @@ function parseLine(prev, quote, index) {
     // Some of my quotes had huge chunks of spaces - probably from epub to mobi conversions?
     content: contractSpaces(content),
   });
+}
+
+function buildJSON(data) {
+  // entries are separated with ============
+  const kindleQuoteBreak = /={2,}/;
+  const clippings = data.split(kindleQuoteBreak).reduce(parseLine, []);
+
+  return JSON.stringify(clippings);
 }
 
 
@@ -77,13 +90,9 @@ fs.readFile(flags.infile, 'utf8', (err, data) => {
   if (err) throw err;
 
   const dest = path.join(flags.dirname, flags.outfile);
-  const kindleQuoteBreak = /={2,}/;
+  const clippings = buildJSON(data);
 
-  let quotes = data.split(kindleQuoteBreak)
-                   .slice(1, -1)
-                   .reduce(parseLine, []);
-
-  fs.writeFile(dest, JSON.stringify(quotes), (writeErr) => {
+  fs.writeFile(dest, clippings, (writeErr) => {
     if (writeErr) {
       throw writeErr;
     } else console.log(`Output quotes to ${dest}`);
