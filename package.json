@@ -1,0 +1,17 @@
+{
+  "name": "KindleQuotes",
+  "version": "0.1.0",
+  "description": "Parse highlighted passages from Kindle's 'My Clippings' file to JSON",
+  "main": "index.js",
+  "engines": {
+    "node": ">=6.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Duncan Bay",
+  "license": "ISC",
+  "dependencies": {
+    "args": "^1.0.2"
+  }
+}
