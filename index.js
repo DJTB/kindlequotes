@@ -74,7 +74,7 @@ function parseLine(prev, quote, index) {
 }
 
 function buildJSON(data) {
-  // entries are separated with ============
+  // entries are separated with ==========
   const kindleQuoteBreak = /={2,}/;
   const clippings = data.split(kindleQuoteBreak).reduce(parseLine, []);
 
