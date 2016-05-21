@@ -8,8 +8,7 @@ args
   .option('infile', 'Filename to read kindle quotes, default is quotes.txt', 'quotes.txt')
   .option('outfile', 'Filename to write JSON, default is quotes.json', 'quotes.json')
   .option('dirname', 'Path to write outfile to, default is pwd', __dirname)
-  .option('formatnames',
-    'Boolean to re-order author names from "Surname, Name" to "Name Surname, default true"', true);
+  .option('no-reorder', 'Prevent re-ordering author names from "Surname, Name" to "Name Surname"');
 
 const flags = args.parse(process.argv);
 
@@ -44,7 +43,7 @@ function parseAuthor(str) {
 
   // match names, and split any multiple authors delineated by ";" and format as Firstname Last
   let authors = str.match(re)[1].split(/;\s?/);
-  if (flags.formatnames) authors = authors.map(orderNames);
+  if (!flags.n) authors = authors.map(orderNames);
   return authors.join(', ');
 }
 
