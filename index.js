@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-// TODO: package up as an NPM module so it can be -g installed and run from path with node
-
 const fs = require('fs');
 const path = require('path');
 const args = require('args');
+const moment = require('moment');
 
 args
-  .option('infile', 'Filename to read kindle quotes, default is quotes.txt', 'quotes.txt')
-  .option('outfile', 'Filename to write JSON, default is quotes.json', 'quotes.json')
-  .option('dirname', 'Path to write outfile to, default is pwd', __dirname)
+  .option('infile', 'Filename to read from [Default: My Clippings.txt]', 'My Clippings.txt')
+  .option('outfile', 'Filename to write to [Default: quotes.json]', 'quotes.json')
+  .option('dirname', 'Path to write outfile to [Default: ./]', __dirname)
   .option('no-reorder', 'Prevent re-ordering author names from "Surname, Name" to "Name Surname"');
 
 const flags = args.parse(process.argv);
@@ -19,11 +18,30 @@ const flags = args.parse(process.argv);
 /////////////
 
 function stripBOM(str) { return str.replace(/[\u200B-\u200D\uFEFF]/g, ''); }
-function parseTitle(str) { return str.match(/.+(?=\s\()/)[0]; }
 function swapWords(w1, w2) { return `${w2} ${w1}`; }
-function last(arr) { return arr[arr.length - 1]; }
+function last(arr) { return arr.length && arr[arr.length - 1]; }
 function isEmpty(x) { return x === '' || x == null; }
-function isDuplicate(a, b) { return a === b; }
+function isSame(a, b) { return a === b; }
+function isHighlight(str) { return str.match(/Your\s(\w+)\b/)[1] === 'Highlight'; }
+// for mid-sentence quotes
+function prependEllipsis(str) { return /[a-z]/.test(str[0]) ? `…${str}` : str; }
+
+function smartQuotes(str) {
+  return str
+  .replace(/'''/g, '\u2034')                                           // triple prime
+  .replace(/(\W|^)"(\S)/g, '$1\u201c$2')                               // beginning "
+  .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2')  // ending "
+  .replace(/([^0-9])"/g,'$1\u201d')                                    // remaining " at end of word
+  .replace(/''/g, '\u2033')                                            // double prime
+  .replace(/(\W|^)'(\S)/g, '$1\u2018$2')                               // beginning '
+  .replace(/([a-z])'([a-z])/ig, '$1\u2019$2')                          // conjunction's possession
+  .replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/ig, '$1\u2019$3')         // ending '
+  // backwards apostrophe
+  .replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/ig, '$1\u2019')
+  // abbrev. years like '93
+  .replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/ig, '\u2019$2$3')
+  .replace(/'/g, '\u2032');
+}
 
 /**
  * Reduce all occurrences of multiple spaces to a single space char.
@@ -31,52 +49,71 @@ function isDuplicate(a, b) { return a === b; }
  * @param  {String} str
  * @return {String}
  */
-function contractSpaces(str) { return str.replace(/\s{2,}/g, ' '); }
+function contractSpaces(str) {
+  return str.replace(/\s{2,}/g, ' ');
+}
 
 /**
- *  re-order names in the format of "surname, name" to "name surname"
+ * Re-order names in the format of "surname, name" to "name surname"
  * @param  {String} str String containing more than one name
  * @return {String}     Re-ordered name
  */
-function orderNames(str) { return /,/.test(str) ? swapWords(...str.split(/,\s?/)) : str; }
+function orderNames(str) {
+  return /,/.test(str) ? swapWords(...str.split(/,\s?/)) : str;
+}
+
+function parseTitle(str) {
+  const titleRE = /.+(?=\s\()/;
+
+  return smartQuotes(str.match(titleRE)[0]);
+}
 
 function parseAuthor(str) {
   // capture author names from string format: "Book title (maybe with parens) (AUTHOR NAMES)"
-  const re = /(?:\((?!.*\())(.+)(?:\))/;
+  const authorRE = /(?:\((?!.*\())(.+)(?:\))/;
 
   // match names, and split any multiple authors delineated by ";" and format as Firstname Last
-  let authors = str.match(re)[1].split(/;\s?/);
+  let authors = str.match(authorRE)[1].split(/;\s?/);
   if (!flags.n) authors = authors.map(orderNames);
   return authors.join(', ');
 }
 
-// TODO: use moment.js or roll-your-own date parsing into a proper JS Date() object.
-function parseDate(str) {
-  // kindle human readable dates follow 'on ' and end with ' HH:MM:SS'
-  // NOTE: keep the time in string if parsing to a JS date
-  const re = /\son\s(.*)(?=\s\d\d:)/;
 
-  return str.match(re)[1];
+function parseDate(str) {
+  const dateRE = /Added\son\s(.*)/;
+  const dateStr = str.match(dateRE)[1];
+
+  return {
+    human: dateStr.slice(0, -9),
+    dateTime: moment(dateStr, 'dddd, DD MMMM YYYY HH-mm-ss').toDate(),
+  };
+}
+
+function parseLoc(str) {
+  const locRE = /(?:location\s)(\d+-?\d+)/;
+  return str.match(locRE)[1];
 }
 
 function parseLine(prev, quote, index) {
-  const [header, date, content] = quote.trim().split(/\s?\n\s?/);
+  const [header, meta, content] = quote.trim().split(/\s?\n\s?/);
 
-  if (isEmpty(content) || prev.length && isDuplicate(content, last(prev).content)) return prev;
+  if (isEmpty(content)) return prev;
+  if (isSame(last(prev).content, content)) return prev;
+  if (!isHighlight) return prev;
 
   return prev.concat({
     title: parseTitle(header),
     author: parseAuthor(header),
-    date: parseDate(date),
-    // Some of my quotes had huge chunks of spaces - probably from epub to mobi conversions?
-    content: contractSpaces(content),
+    loc: parseLoc(meta),
+    date: parseDate(meta),
+    content: smartQuotes(prependEllipsis(contractSpaces(content))),
   });
 }
 
 function buildJSON(data) {
   // entries are separated with ==========
-  const kindleQuoteBreak = /={2,}/;
-  const clippings = data.split(kindleQuoteBreak).reduce(parseLine, []);
+  const clipSeparator = /={2,}/;
+  const clippings = stripBOM(data).split(clipSeparator).reduce(parseLine, []);
 
   return JSON.stringify(clippings);
 }
@@ -95,6 +132,6 @@ fs.readFile(flags.infile, 'utf8', (err, data) => {
   fs.writeFile(dest, clippings, (writeErr) => {
     if (writeErr) {
       throw writeErr;
-    } else console.log(`Output quotes to ${dest}`);
+    } else console.log(`Output: ${dest}`);
   });
 });

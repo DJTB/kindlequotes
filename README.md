@@ -1,12 +1,14 @@
 # kindlequotes
-Transform a kindle clippings text file to JSON.
+##### Transforms Kindle clippings text file to JSON.
 
 ```
+Usage: ./index.js -i 'My Clippings.txt'
+
 Options:
 
-  -o, --outfile [value]  Filename to write JSON, default is quotes.json
-  -d, --dirname [value]  Path to write outfile to, default is pwd
-  -i, --infile [value]   Filename to read kindle quotes, default is quotes.txt
+  -o, --outfile [value]  Filename to write JSON [Default; quotes.json]
+  -i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
+  -d, --dirname [value]  Path to write outfile to [Default: ./]
   -n, --no-reorder       Prevent re-ordering author names from "Surname, Name" to "Name Surname"
   -v, --version          Output the version number
   -h, --help             Output usage information

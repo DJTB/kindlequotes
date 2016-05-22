@@ -1,17 +1,26 @@
 {
   "name": "KindleQuotes",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Parse highlighted passages from Kindle's 'My Clippings' file to JSON",
-  "main": "index.js",
+  "repository": "DJTB/kindlequotes",
+  "author": {
+    "name": "Duncan Bay",
+    "email": "duncan.bay@gmail.com"
+  },
+  "bin": "index.js",
   "engines": {
     "node": ">=6.1.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Duncan Bay",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "kindle",
+    "highlights",
+    "clippings",
+    "quotes",
+    "JSON"
+  ],
   "dependencies": {
-    "args": "^1.0.2"
+    "args": "^1.0.2",
+    "moment": "^2.13.0"
   }
 }
