@@ -16,7 +16,7 @@ Options:
 ```
 
 ## Features include:
-* Replacing dumbquotes ''/"" with ‘’/“”
+* Replacing dumbquotes ' ' " " with smartquotes ‘ ’ “ ”
 * Prepending highlights mid-sentence with an… ellpisis
 * Stripping large sections of spacing (possibly from epub or pdf highlights)
 * Re-ordering author names to FirstName Surname.
