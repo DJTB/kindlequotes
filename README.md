@@ -23,7 +23,7 @@ Options:
 * Skip sequential duplicates or empty highlights
 
 
-### Transforms these :
+### Transforms this:
 ```
 ==========
 The Third Bear (VanderMeer, Jeff)
