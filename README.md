@@ -4,11 +4,12 @@
 ## Requirements
 Ensure you have [https://nodejs.org/en/](Node) installed on your system.
 
+
+## Usage
+Run the script from your terminal: `./index.js -i 'My Clippings.txt'`
+
+## Options
 ```
-Usage: ./index.js -i 'My Clippings.txt'
-
-Options:
-
   -o, --outfile [value]  Filename to write JSON [Default; quotes.json]
   -i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
   -d, --dirname [value]  Path to write outfile to [Default: ./]
