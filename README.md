@@ -1,6 +1,9 @@
 # kindlequotes
 ##### Transforms Kindle 'My Clippings' file to JSON.
 
+## Requirements
+Ensure you have [https://nodejs.org/en/](Node) installed on your system.
+
 ```
 Usage: ./index.js -i 'My Clippings.txt'
 
