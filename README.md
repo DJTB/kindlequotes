@@ -13,19 +13,17 @@ Run the script from your terminal: `./index.js -i 'My Clippings.txt'`
   -o, --outfile [value]  Filename to write JSON [Default: quotes.json]
   -i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
   -d, --dirname [value]  Path to write outfile to [Default: ./]
-  -n, --no-reorder       Prevent re-ordering author names from "Surname, FirstName" to "FirstName Surname"
   -v, --version          Output the version number
   -h, --help             Output usage information
 
 ```
 
-## Features include:
-* Replacing dumbquotes ' ' " " with smartquotes ‘ ’ “ ”
-* Prepending highlights mid-sentence with an… ellpisis
-* Stripping large sections of spacing (possibly from epub or pdf highlights)
-* Re-ordering author names to FirstName Surname.
-* Skip sequential duplicates or empty highlights
-
+## Features:
+* Replaces dumbquotes ' ' " " with smartquotes ‘ ’ “ ”
+* Prepends highlights mid-sentence with an… ellpisis
+* Trims large sections of spacing (possibly from epub or pdf highlights)
+* Standardises author format as Firstname Lastname.
+* Skips duplicates or empty highlights
 
 ### Transforms this:
 ```
@@ -49,20 +47,14 @@ and eyeing the wizard speculatively across the room. A glance was enough to tell
     "title": "The Third Bear",
     "author": "Jeff VanderMeer",
     "loc": "1856-1857",
-    "date": {
-      "human": "Monday, 1 September 2014",
-      "dateTime": "2014-09-01T02:58:20.000Z"
-    },
+    "date": "2014-09-01T02:58:20.000Z",
     "content": "Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead."
   },
    {
     "title": "Songs of the Dying Earth",
     "author": "Gardner Dozois, George R.R. Martin",
     "loc": "11849-11850",
-    "date": {
-      "human": "Thursday, 30 April 2015",
-      "dateTime": "2015-04-30T10:58:20.000Z"
-    },
+    "date": "2015-04-30T10:58:20.000Z",
     "content": "…and eyeing the wizard speculatively across the room. A glance was enough to tell Molloqos that she was a woman of the evening, though in her case evening was edging on toward night."
   }
 ]
