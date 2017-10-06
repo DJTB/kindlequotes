@@ -17,9 +17,9 @@
   "engines": {
     "node": ">=8.5.0"
   },
+  "main": "index.js",
   "bin": "./bin/kindleQuotes.js",
   "scripts": {
-    "start": "node bin/kindleQuotes.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
