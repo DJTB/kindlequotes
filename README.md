@@ -1,6 +1,6 @@
-# Kindle Quotes
-##### Transforms Kindle 'My Clippings' text file to JSON.
 
+<h1 align="center">Kindle Quotes</h1>
+<h5 align="center">Transform Kindle 'My Clippings' text file to JSON.</h5>
 <div align="center">
   <!-- Npm Version -->
   <a href="https://www.npmjs.com/package/kindleQuotes">
@@ -12,32 +12,14 @@
   </a>
 </div>
 
-## Requirements
-Ensure you have [https://nodejs.org/en/](Node) `>=8.5.0` installed
-
-## Install global cli
-`npm install -g kindleQuotes`
-
-## Usage
-`kindleQuotes -i 'My Clippings.txt' -o 'my-quotes.json'`
-
-## Options
-```
-  -i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
-  -o, --outfile [value]  Filename to write JSON [Default: quotes.json]
-  -d, --dirname [value]  Path to write outfile to [Default: current working directory]
-  -v, --version          Output the version number
-  -h, --help             Output this usage information
-```
-
-## Features:
+### Features
 * Replaces dumbquotes ' ' " " with smartquotes ‘ ’ “ ”
 * Prepends highlights starting mid-sentence with an …ellipsis
 * Trims large sections of spacing (from epub or pdf highlights)
 * Standardises author format as Firstname Lastname
 * Skips bookmarks, duplicates, and empty highlights
 
-### Transforms this:
+#### Transform this:
 ```
 ==========
 The Third Bear (VanderMeer, Jeff)
@@ -52,7 +34,7 @@ and eyeing the wizard speculatively across the room. A glance was enough to tell
 ==========
 ```
 
-### Into this:
+#### Into this:
 ```
 [
   {
@@ -70,4 +52,32 @@ and eyeing the wizard speculatively across the room. A glance was enough to tell
     "content": "…and eyeing the wizard speculatively across the room. A glance was enough to tell Molloqos that she was a woman of the evening, though in her case evening was edging on toward night."
   }
 ]
+```
+
+### Usage
+#### As Global CLI
+```bash
+$ npm install -g kindleQuotes
+$ kindleQuotes -i 'My Clippings.txt' -o 'my-quotes.json'
+```
+
+##### Options
+```
+-i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
+-o, --outfile [value]  Filename to write JSON [Default: quotes.json]
+-d, --dirname [value]  Path to write outfile to [Default: current working directory]
+-v, --version          Output the version number
+-h, --help             Output this usage information
+```
+
+#### As Import in a Local Project
+```bash
+$ npm install kindleQuotes
+```
+```javascript
+const transformQuotes = require('kindleQuotes');
+const fs = require('fs');
+const quotes = transformQuotes(
+  fs.readFileSync('./My Clippings.txt', 'utf8')
+);
 ```
