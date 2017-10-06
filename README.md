@@ -1,8 +1,19 @@
-# kindlequotes
-##### Transforms Kindle 'My Clippings' file to JSON.
+# Kindle Quotes
+##### Transforms Kindle 'My Clippings' text file to JSON.
+
+<div align="center">
+  <!-- Npm Version -->
+  <a href="https://www.npmjs.com/package/kindleQuotes">
+    <img src="https://img.shields.io/npm/v/kindleQuotes.svg" alt="NPM package" />
+  </a>
+  <!-- Test Coverage -->
+  <a href="https://coveralls.io/github/DJTB/kindleQuotes">
+    <img src="https://img.shields.io/coveralls/DJTB/kindleQuotes.svg" alt="Test Coverage" />
+  </a>
+</div>
 
 ## Requirements
-Ensure you have [https://nodejs.org/en/](Node) installed on your system.
+Ensure you have [https://nodejs.org/en/](Node) `>=8.5.0` installed
 
 ## Install global cli
 `npm install -g kindleQuotes`
@@ -12,19 +23,18 @@ Ensure you have [https://nodejs.org/en/](Node) installed on your system.
 
 ## Options
 ```
-  -o, --outfile [value]  Filename to write JSON [Default: quotes.json]
   -i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
+  -o, --outfile [value]  Filename to write JSON [Default: quotes.json]
   -d, --dirname [value]  Path to write outfile to [Default: current working directory]
   -v, --version          Output the version number
-  -h, --help             Output usage information
-
+  -h, --help             Output this usage information
 ```
 
 ## Features:
 * Replaces dumbquotes ' ' " " with smartquotes ‘ ’ “ ”
 * Prepends highlights starting mid-sentence with an …ellipsis
 * Trims large sections of spacing (from epub or pdf highlights)
-* Standardises author format as Firstname Lastname.
+* Standardises author format as Firstname Lastname
 * Skips bookmarks, duplicates, and empty highlights
 
 ### Transforms this:
