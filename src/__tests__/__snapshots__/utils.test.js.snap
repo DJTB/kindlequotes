@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transformQuotes() ignores bookmarks 1`] = `
+Array [
+  Object {
+    "author": "Peter Watts",
+    "content": "“Damn right. And you’ll be talking to ’em while I’m giving them their physicals.” “Maybe not. I mean, Mom would never admit it in a million years but you had a point about language. When you get right down to it, it’s a workaround. Like trying to describe dreams with smoke signals. It’s noble, it’s maybe the most noble thing a body can do but you can’t turn a sunset into a string of grunts without losing something. It’s limiting. Maybe whatever’s out here doesn’t even use it.”",
+    "date": 2016-08-14T10:04:12.000Z,
+    "loc": "1083-1086",
+    "title": "Blindsight",
+  },
+  Object {
+    "author": "Peter Watts",
+    "content": "None of it had been real, as it turned out. Or at least, none of it had been confirmed. The experts of the day had been little more than witch doctors dancing through improvised rituals: meandering free-form interviews full of leading questions and nonverbal cues, scavenger hunts through regurgitated childhoods. Sometimes a shot of lithium or haloperidol when the beads and rattles didn’t work. The technology to map minds was barely off the ground; the technology to edit them was years away. So the therapists and psychiatrists poked at their victims and invented names for things they didn’t understand, and argued over the shrines of Freud and Klein and the old Astrologers. Doing their very best to sound like practitioners of Science.",
+    "date": 2016-08-15T15:44:11.000Z,
+    "loc": "2030-2035",
+    "title": "Blindsight",
+  },
+]
+`;
+
+exports[`transformQuotes() removes duplicates 1`] = `
+Array [
+  Object {
+    "author": "Nick Harkaway",
+    "content": "The war came to an end and – as with the one before it – everyone was too exhausted to cheer. People smiled at one another not like victorious heroes but like punch-drunk prizefighters, eyes swollen shut and lips rippled and split, who do not understand why everyone is clapping.",
+    "date": 2014-07-29T10:39:52.000Z,
+    "loc": "6551-6553",
+    "title": "Angelmaker",
+  },
+  Object {
+    "author": "Nick Harkaway",
+    "content": "‘Home-made,’ Edie Banister says happily, a soon-to-be-novagenarian with a bad attitude and a fine knowledge of exothermic reactions. ‘I think I may have over-egged the nitro and gone a bit heavy on the toluene. However, nothing succeeds like excess, ey?’",
+    "date": 2014-07-31T16:25:28.000Z,
+    "loc": "7692-7694",
+    "title": "Angelmaker",
+  },
+  Object {
+    "author": "Jeff VanderMeer",
+    "content": "…had been falling apart for many years. The woods were dark and loamy and took the sound of our transport like a wolf taking a rabbit.",
+    "date": 2014-08-31T12:16:53.000Z,
+    "loc": "1653-1654",
+    "title": "The Third Bear",
+  },
+  Object {
+    "author": "Jeff VanderMeer",
+    "content": "Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.",
+    "date": 2014-09-01T04:58:20.000Z,
+    "loc": "1856-1857",
+    "title": "The Third Bear",
+  },
+]
+`;
+
+exports[`transformQuotes() works for a single entry 1`] = `
+Array [
+  Object {
+    "author": "Jeff VanderMeer",
+    "content": "Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.",
+    "date": 2014-09-01T04:58:20.000Z,
+    "loc": "1856-1857",
+    "title": "The Third Bear",
+  },
+]
+`;
+
+exports[`transformQuotes() works for multiple entries 1`] = `
+Array [
+  Object {
+    "author": "Nick Harkaway",
+    "content": "Granted, it belongs to the man to whom everyone else is apparently deferring. He is richly dressed, and surrounded by dependants, concubines, and offspring. And yet, Edie has seen other pictures in the past where one child, caught by chance in an attitude of casual joy, has completely outshone such a parent; where one unthinking scullery maid has glanced at the camera and displayed for a moment her natural beauty, and the social order has been quite overturned. Photography is without mercy – though it’s nonsense to say it does not lie. Rather, it lies in a particular, capricious way which makes beggars of ministers and gods of cat’s meat men.",
+    "date": 2014-07-22T15:51:15.000Z,
+    "loc": "3023-3027",
+    "title": "Angelmaker",
+  },
+  Object {
+    "author": "Nick Harkaway",
+    "content": "…and goes upstairs to the relative tranquillity of her rented room. She stares around her. Oscar Wilde, she recalls, acknowledged the close of his mortal existence by remarking: ‘It’s me or the wallpaper. One of us has got to go.’ Looking up at the brown floral print, she feels a fleeting kinship.",
+    "date": 2014-07-22T16:22:32.000Z,
+    "loc": "3211-3214",
+    "title": "Angelmaker",
+  },
+  Object {
+    "author": "Nick Harkaway",
+    "content": "The war came to an end and – as with the one before it – everyone was too exhausted to cheer. People smiled at one another not like victorious heroes but like punch-drunk prizefighters, eyes swollen shut and lips rippled and split, who do not understand why everyone is clapping.",
+    "date": 2014-07-29T10:39:52.000Z,
+    "loc": "6551-6553",
+    "title": "Angelmaker",
+  },
+  Object {
+    "author": "Nick Harkaway",
+    "content": "‘Home-made,’ Edie Banister says happily, a soon-to-be-novagenarian with a bad attitude and a fine knowledge of exothermic reactions. ‘I think I may have over-egged the nitro and gone a bit heavy on the toluene. However, nothing succeeds like excess, ey?’",
+    "date": 2014-07-31T16:25:28.000Z,
+    "loc": "7692-7694",
+    "title": "Angelmaker",
+  },
+  Object {
+    "author": "Jeff VanderMeer",
+    "content": "…had been falling apart for many years. The woods were dark and loamy and took the sound of our transport like a wolf taking a rabbit.",
+    "date": 2014-08-31T12:16:53.000Z,
+    "loc": "1653-1654",
+    "title": "The Third Bear",
+  },
+  Object {
+    "author": "Jeff VanderMeer",
+    "content": "Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.",
+    "date": 2014-09-01T04:58:20.000Z,
+    "loc": "1856-1857",
+    "title": "The Third Bear",
+  },
+]
+`;

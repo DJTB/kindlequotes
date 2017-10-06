@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const util = require('util');
 const path = require('path');
 const args = require('args');
-const { transformQuotes } = require('./utils');
+const { transformQuotes } = require('../src/utils');
 
 const readAsync = util.promisify(fs.readFile);
 const writeAsync = util.promisify(fs.writeFile);
@@ -10,7 +12,7 @@ const writeAsync = util.promisify(fs.writeFile);
 args
   .option('infile', 'Filename to read from [Default: My Clippings.txt]', 'My Clippings.txt')
   .option('outfile', 'Filename to write to [Default: quotes.json]', 'quotes.json')
-  .option('dirname', 'Path to write outfile to [Default: .]', '.');
+  .option('dirname', 'Path to write outfile to [Default: .]', process.cwd());
 
 const flags = args.parse(process.argv);
 const outPath = path.join(flags.dirname, flags.outfile);

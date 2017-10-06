@@ -1,20 +1,45 @@
 const {
+  single,
+  multiple,
+  withDuplicates,
+  withBookmarks,
+} = require('./fixtures');
+
+const {
   contractSpaces,
   isEmpty,
   last,
   parseAuthor,
   parseContent,
   parseDate,
-  parseLine,
   parseLoc,
   parseTitle,
   prependEllipsis,
   reorderNames,
+  safeMatch,
   smartQuotes,
   stripBOM,
   swapJoin,
   transformQuotes,
-} = require('./utils');
+} = require('../utils');
+
+describe('stripBom', () => {
+  it('has a sane default', () => {
+    expect(stripBOM()).toBe('');
+  });
+});
+
+describe('safeMatch()', () => {
+  it('has a sane default', () => {
+    expect(safeMatch()).toEqual([]);
+  });
+  it('returns matches', () => {
+    expect(safeMatch('anapple', /(an)(apple)/)).toEqual(expect.arrayContaining(['anapple', 'an', 'apple']));
+  });
+  it('returns empty array instead of null if no match', () => {
+    expect(safeMatch('anapple', /oranges/)).toEqual([]);
+  });
+});
 
 describe('contractSpaces()', () => {
   it('sane default', () => {
@@ -80,7 +105,7 @@ describe('swapJoin()', () => {
     expect(swapJoin()).toBe('');
   });
   it('works as expected', () => {
-    expect(swapJoinWords('one', 'two')).toBe('two one');
+    expect(swapJoin('one', 'two')).toBe('two one');
   });
 });
 
@@ -100,7 +125,7 @@ describe('parseAuthor()', () => {
   });
   it('works as expected', () => {
     expect(parseAuthor('Acceptance: A Novel (The Southern Reach Trilogy) (Jeff VanderMeer)'))
-      .toBe('Jeff Vandermeer');
+      .toBe('Jeff VanderMeer');
     expect(parseAuthor('Songs of the Dying Earth (Dozois, Gardner;Martin, George R.R.)'))
       .toBe('Gardner Dozois, George R.R. Martin');
   });
@@ -112,7 +137,7 @@ describe('parseDate()', () => {
   });
   it('works as expected', () => {
     expect(parseDate('- Your Highlight at location 11849-11850 | Added on Thursday, 30 April 2015 20:58:20'))
-      .toBe('2015-04-30T12:58:20.000Z'));
+      .toEqual(new Date('2015-04-30T12:58:20.000Z'));
   });
 });
 
@@ -122,7 +147,7 @@ describe('parseLoc()', () => {
   });
   it('works as expected', () => {
     expect(parseLoc('- Your Highlight at location 11849-11850 | Added on Thursday, 30 April 2015 20:58:20'))
-      .toBe('11849-11850'));
+      .toBe('11849-11850');
   });
 });
 
@@ -131,10 +156,28 @@ describe('parseContent()', () => {
     expect(parseContent()).toBe('');
   });
   it('works as expected', () => {
-    expect(parseContent(`Blake says, "Where?" He's a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.`))
-      .toBe('"Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.');
+    expect(parseContent('Blake says, "Where?" He\'s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.'))
+      .toBe('Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead.');
 
     expect(parseContent('and eyeing the wizard speculatively across the room. A glance was enough to tell Molloqos that she was a woman of the evening, though in her case evening was edging on toward night.'))
       .toBe('…and eyeing the wizard speculatively across the room. A glance was enough to tell Molloqos that she was a woman of the evening, though in her case evening was edging on toward night.');
+  });
+});
+
+describe('transformQuotes()', () => {
+  it('sane default', () => {
+    expect(transformQuotes()).toEqual([]);
+  });
+  it('works for a single entry', () => {
+    expect(transformQuotes(single)).toMatchSnapshot();
+  });
+  it('works for multiple entries', () => {
+    expect(transformQuotes(multiple)).toMatchSnapshot();
+  });
+  it('removes duplicates', () => {
+    expect(transformQuotes(withDuplicates)).toMatchSnapshot();
+  });
+  it('ignores bookmarks', () => {
+    expect(transformQuotes(withBookmarks)).toMatchSnapshot();
   });
 });

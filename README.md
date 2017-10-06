@@ -4,15 +4,17 @@
 ## Requirements
 Ensure you have [https://nodejs.org/en/](Node) installed on your system.
 
+## Install global cli
+`npm install -g kindleQuotes`
 
 ## Usage
-Run the script from your terminal: `./index.js -i 'My Clippings.txt'`
+`kindleQuotes -i 'My Clippings.txt' -o 'my-quotes.json'`
 
 ## Options
 ```
   -o, --outfile [value]  Filename to write JSON [Default: quotes.json]
   -i, --infile [value]   Filename to read kindle highlights [Default: My Clippings.txt]
-  -d, --dirname [value]  Path to write outfile to [Default: ./]
+  -d, --dirname [value]  Path to write outfile to [Default: current working directory]
   -v, --version          Output the version number
   -h, --help             Output usage information
 
@@ -20,10 +22,10 @@ Run the script from your terminal: `./index.js -i 'My Clippings.txt'`
 
 ## Features:
 * Replaces dumbquotes ' ' " " with smartquotes ‘ ’ “ ”
-* Prepends highlights mid-sentence with an… ellpisis
-* Trims large sections of spacing (possibly from epub or pdf highlights)
+* Prepends highlights starting mid-sentence with an …ellipsis
+* Trims large sections of spacing (from epub or pdf highlights)
 * Standardises author format as Firstname Lastname.
-* Skips duplicates or empty highlights
+* Skips bookmarks, duplicates, and empty highlights
 
 ### Transforms this:
 ```
