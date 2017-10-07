@@ -1,6 +1,6 @@
 {
   "name": "kindlequotes",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Parse highlighted passages from Kindle's 'My Clippings' file to JSON",
   "repository": "DJTB/kindlequotes",
   "author": {
@@ -13,6 +13,11 @@
     "clippings",
     "quotes",
     "JSON"
+  ],
+  "files": [
+    "index.js",
+    "src/utils.js",
+    "bin/kindleQuotes.js"
   ],
   "engines": {
     "node": ">=8.5.0"
