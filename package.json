@@ -14,6 +14,11 @@
     "quotes",
     "JSON"
   ],
+  "files": [
+    "index.js",
+    "src/utils.js",
+    "bin/kindleQuotes.js"
+  ],
   "engines": {
     "node": ">=8.5.0"
   },
