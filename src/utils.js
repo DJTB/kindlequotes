@@ -1,6 +1,5 @@
 const stripBOM = (str = '') => str.replace(/[\u200B-\u200D\uFEFF]/g, '');
 const swapJoin = (a = '', b = '') => `${b} ${a}`.trim();
-const last = (arr = []) => (Array.isArray(arr) && arr.slice(-1).pop()) || undefined;
 const isEmpty = (x = '') => x == null || x.length === 0;
 const prependEllipsis = (str = '') => /^[a-z]/.test(str) ? `…${str}` : str;
 const contractSpaces = (str = '') => str.replace(/\s{2,}/g, ' ');
@@ -81,7 +80,6 @@ function smartQuotes(str = '') {
 module.exports = {
   contractSpaces,
   isEmpty,
-  last,
   parseAuthor,
   parseContent,
   parseDate,

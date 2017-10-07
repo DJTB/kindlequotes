@@ -8,7 +8,6 @@ const {
 const {
   contractSpaces,
   isEmpty,
-  last,
   parseAuthor,
   parseContent,
   parseDate,
@@ -58,16 +57,6 @@ describe('isEmpty()', () => {
     expect(isEmpty('')).toBe(true);
     expect(isEmpty([])).toBe(true);
     expect(isEmpty(null)).toBe(true);
-  });
-});
-
-describe('last()', () => {
-  it('sane default', () => {
-    expect(last()).toBe(undefined);
-  });
-  it('works as expected', () => {
-    expect(last([1])).toBe(1);
-    expect(last([1, 2, 3, 4])).toBe(4);
   });
 });
 
