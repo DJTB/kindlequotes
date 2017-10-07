@@ -9,7 +9,7 @@ const {
   contractSpaces,
   isEmpty,
   monthNameToNum,
-  parseAuthor,
+  parseAuthors,
   parseContent,
   parseDate,
   parseLoc,
@@ -135,15 +135,15 @@ describe('parseTitle()', () => {
   });
 });
 
-describe('parseAuthor()', () => {
+describe('parseAuthors()', () => {
   it('sane default', () => {
-    expect(parseAuthor()).toBe('');
+    expect(parseAuthors()).toEqual([]);
   });
   it('works as expected', () => {
-    expect(parseAuthor('Acceptance: A Novel (The Southern Reach Trilogy) (Jeff VanderMeer)'))
-      .toBe('Jeff VanderMeer');
-    expect(parseAuthor('Songs of the Dying Earth (Dozois, Gardner;Martin, George R.R.)'))
-      .toBe('Gardner Dozois, George R.R. Martin');
+    expect(parseAuthors('Acceptance: A Novel (The Southern Reach Trilogy) (Jeff VanderMeer)'))
+      .toEqual(expect.arrayContaining(['Jeff VanderMeer']));
+    expect(parseAuthors('Songs of the Dying Earth (Dozois, Gardner;Martin, George R.R.)'))
+      .toEqual(expect.arrayContaining(['Gardner Dozois', 'George R.R. Martin']));
   });
 });
 

@@ -30,7 +30,7 @@ function transformQuotes(str = '') {
       return list.concat({
         loc,
         title: parseTitle(header),
-        author: parseAuthor(header),
+        authors: parseAuthors(header),
         date: parseDate(meta),
         content: parseContent(content),
       });
@@ -41,15 +41,12 @@ function parseTitle(str = '') {
   return smartQuotes(safeMatch(str, /.+(?=\s\()/)[0]);
 }
 
-function parseAuthor(str = '') {
+function parseAuthors(str = '') {
   // capture author names from string format: "Book title (maybe with parens) (AUTHOR NAMES)"
   const authorRE = /(?:\((?!.*\())(.+)(?:\))/;
   const [, authors] = safeMatch(str, authorRE);
 
-  return (authors || '')
-    .split(/;\s?/)
-    .map(reorderNames)
-    .join(', ');
+  return authors ? authors.split(/;\s?/).map(reorderNames) : [];
 }
 
 function parseLoc(str = '') {
@@ -118,7 +115,7 @@ module.exports = {
   contractSpaces,
   isEmpty,
   monthNameToNum,
-  parseAuthor,
+  parseAuthors,
   parseContent,
   parseDate,
   parseLoc,
