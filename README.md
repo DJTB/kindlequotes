@@ -57,8 +57,8 @@ and eyeing the wizard speculatively across the room. A glance was enough to tell
 ### Usage
 #### As Global CLI
 ```bash
-$ npm install -g kindleQuotes
-$ kindleQuotes -i 'My Clippings.txt' -o 'my-quotes.json'
+$ npm install -g kindlequotes
+$ kindlequotes -i 'My Clippings.txt' -o 'my-quotes.json'
 ```
 
 ##### Options
@@ -72,10 +72,10 @@ $ kindleQuotes -i 'My Clippings.txt' -o 'my-quotes.json'
 
 #### As Import in a Local Project
 ```bash
-$ npm install kindleQuotes
+$ npm install kindlequotes
 ```
 ```javascript
-const transformQuotes = require('kindleQuotes');
+const transformQuotes = require('kindlequotes');
 const fs = require('fs');
 const quotes = transformQuotes(
   fs.readFileSync('./My Clippings.txt', 'utf8')
