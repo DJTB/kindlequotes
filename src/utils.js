@@ -52,9 +52,23 @@ function parseLoc(str = '') {
   return loc || '';
 }
 
+function monthNameToNum(monthName) {
+  const months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December',
+  ];
+  const month = months.indexOf(monthName);
+  return month ? month + 1 : 0;
+}
+
+function prependZero(num) {
+  return num < 10 ? `${0}${num}` : num;
+}
+
 function parseDate(str = '') {
-  const [_, dateStr] = safeMatch(str, /Added on \w+, (.*)/);
-  return dateStr ? new Date(dateStr) : '';
+  const [_, day, monthName, year, time] = safeMatch(str, /Added on \w+, (\d+) (\w+) (\d+) (.*)/);
+  return year ? `${year}-${prependZero(monthNameToNum(monthName))}-${prependZero(day)}T${time}.000Z` : '';
 }
 
 function parseContent(content = '') {

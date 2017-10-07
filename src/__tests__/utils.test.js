@@ -125,8 +125,8 @@ describe('parseDate()', () => {
     expect(parseDate()).toBe('');
   });
   it('works as expected', () => {
-    expect(parseDate('- Your Highlight at location 11849-11850 | Added on Thursday, 30 April 2015 20:58:20'))
-      .toEqual(new Date('2015-04-30T12:58:20.000Z'));
+    expect(parseDate('- Your Highlight at location 11849-11850 | Added on Thursday, 30 April 2015 12:58:20'))
+      .toEqual('2015-04-30T12:58:20.000Z');
   });
 });
 
