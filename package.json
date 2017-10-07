@@ -20,6 +20,7 @@
   "main": "index.js",
   "bin": "./bin/kindleQuotes.js",
   "scripts": {
+    "precommit": "prettier --write",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
@@ -32,11 +33,10 @@
     ]
   },
   "dependencies": {
-    "args": "1.3.1",
-    "date-fns": "1.28.5"
+    "args": "1.3.1"
   },
   "devDependencies": {
-    "jest": "21.2.1",
-    "coveralls": "2.13.1"
+    "coveralls": "2.13.1",
+    "jest": "21.2.1"
   }
 }

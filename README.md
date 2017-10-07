@@ -41,14 +41,14 @@ and eyeing the wizard speculatively across the room. A glance was enough to tell
     "title": "The Third Bear",
     "author": "Jeff VanderMeer",
     "loc": "1856-1857",
-    "date": "2014-09-01T02:58:20.000Z",
+    "date": "2014-09-01T12:58:20.000Z",
     "content": "Blake says, “Where?” He’s a man who measures words as if he had only a few given to him by Fate; too generous a syllable from his lips, and he might fall over dead."
   },
    {
     "title": "Songs of the Dying Earth",
     "author": "Gardner Dozois, George R.R. Martin",
     "loc": "11849-11850",
-    "date": "2015-04-30T10:58:20.000Z",
+    "date": "2015-04-30T20:58:20.000Z",
     "content": "…and eyeing the wizard speculatively across the room. A glance was enough to tell Molloqos that she was a woman of the evening, though in her case evening was edging on toward night."
   }
 ]

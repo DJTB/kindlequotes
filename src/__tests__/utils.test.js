@@ -8,12 +8,14 @@ const {
 const {
   contractSpaces,
   isEmpty,
+  monthNameToNum,
   parseAuthor,
   parseContent,
   parseDate,
   parseLoc,
   parseTitle,
   prependEllipsis,
+  prependZero,
   reorderNames,
   safeMatch,
   smartQuotes,
@@ -22,9 +24,23 @@ const {
   transformQuotes,
 } = require('../utils');
 
-describe('stripBom', () => {
+describe('stripBom()', () => {
   it('has a sane default', () => {
     expect(stripBOM()).toBe('');
+  });
+});
+
+describe('monthNameToNum()', () => {
+  it('has a sane default', () => {
+    expect(monthNameToNum()).toBe(-1);
+  });
+  it('works as expected', () => {
+    const expected = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ];
+    const actual = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    expect(expected.map(monthNameToNum)).toEqual(expect.arrayContaining(actual));
   });
 });
 
@@ -57,6 +73,17 @@ describe('isEmpty()', () => {
     expect(isEmpty('')).toBe(true);
     expect(isEmpty([])).toBe(true);
     expect(isEmpty(null)).toBe(true);
+  });
+});
+
+describe('prependZero()', () => {
+  it('sane default', () => {
+    expect(prependZero()).toBe('');
+  });
+  it('works as expected', () => {
+    expect(prependZero(0)).toBe('00');
+    expect(prependZero(1)).toBe('01');
+    expect(prependZero(10)).toBe('10');
   });
 });
 
