@@ -1,5 +1,5 @@
 {
-  "name": "kindleQuotes",
+  "name": "kindlequotes",
   "version": "0.1.0",
   "description": "Parse highlighted passages from Kindle's 'My Clippings' file to JSON",
   "repository": "DJTB/kindlequotes",
