@@ -3,12 +3,12 @@
 <h5 align="center">Transform Kindle 'My Clippings' text file to JSON.</h5>
 <div align="center">
   <!-- Npm Version -->
-  <a href="https://www.npmjs.com/package/kindleQuotes">
-    <img src="https://img.shields.io/npm/v/kindleQuotes.svg" alt="NPM package" />
+  <a href="https://www.npmjs.com/package/kindlequotes">
+    <img src="https://img.shields.io/npm/v/kindlequotes.svg" alt="NPM package" />
   </a>
   <!-- Test Coverage -->
   <a href="https://coveralls.io/github/DJTB/kindleQuotes">
-    <img src="https://img.shields.io/coveralls/DJTB/kindleQuotes.svg" alt="Test Coverage" />
+    <img src="https://img.shields.io/coveralls/DJTB/kindlequotes.svg" alt="Test Coverage" />
   </a>
 </div>
 
