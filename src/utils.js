@@ -19,7 +19,7 @@ function transformQuotes(str = '') {
   return stripBOM(str)
     .split(entrySeparator)
     .reduce((list, line) => {
-      const [header, meta, content] = line.trim().split(/\s?\n\s?/);
+      const [header, meta, content] = line.trim().split(/\s?\n[\r\n]?\s?/);
       const loc = parseLoc(meta);
 
       // skip bookmarks and duplicates

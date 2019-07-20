@@ -96,7 +96,11 @@ Blindsight (Peter Watts)
 ==========
 `;
 
-const alternateFormat = `==========
+const alternateFormat = `The Six Pillars of Self-Esteem (Branden, Nathaniel)
+- Your Bookmark on Page 99 | Location 1504 | Added on Thursday, February 7, 2019 9:44:28 AM
+
+
+==========
 ﻿The Six Pillars of Self-Esteem (Branden, Nathaniel)
 - Your Bookmark on Page 118 | Location 1797 | Added on Sunday, February 10, 2019 8:29:24 AM
 
