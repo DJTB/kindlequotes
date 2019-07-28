@@ -25,7 +25,9 @@ const outPath = path.join(flags.dirname, flags.outfile);
     const input = await readAsync(flags.infile, 'utf8');
     const output = transformQuotes(input);
     await writeAsync(outPath, JSON.stringify(output));
-    console.log(`${output.length} entries processed to: ${outPath}`);
+    console.log(
+      `${output.length} ${output.length === 1 ? 'entry' : 'entries'} processed to: ${outPath}`
+    );
   } catch (err) {
     console.warn('Something went wrong...');
     console.error(err);

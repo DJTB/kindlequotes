@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`transformQuotes() handles alternate format 1`] = `
+Array [
+  Object {
+    "authors": Array [
+      "Clayton M. Christensen",
+      "Michael E. Raynor",
+    ],
+    "content": "Financial markets relentlessly pressure executives to grow and keep growing faster and faster. Is it possible to succeed with this mandate? Don’t the innovations that can satisfy investors’ demands for growth require taking risks that are unacceptable to those same investors? Is there a way out of this dilemma?",
+    "date": "2019-04-03T20:40:13.000Z",
+    "loc": "170-172",
+    "title": "The Innovator’s Solution: Creating and Sustaining Successful Growth",
+  },
+]
+`;
+
 exports[`transformQuotes() ignores bookmarks 1`] = `
 Array [
   Object {

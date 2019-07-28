@@ -1,6 +1,6 @@
 {
   "name": "kindlequotes",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Parse highlighted passages from Kindle's 'My Clippings' file to JSON",
   "repository": "DJTB/kindlequotes",
   "author": {

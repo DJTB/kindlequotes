@@ -96,9 +96,27 @@ Blindsight (Peter Watts)
 ==========
 `;
 
+const alternateFormat = `The Six Pillars of Self-Esteem (Branden, Nathaniel)
+- Your Bookmark on Page 99 | Location 1504 | Added on Thursday, February 7, 2019 9:44:28 AM
+
+
+==========
+﻿The Six Pillars of Self-Esteem (Branden, Nathaniel)
+- Your Bookmark on Page 118 | Location 1797 | Added on Sunday, February 10, 2019 8:29:24 AM
+
+
+==========
+﻿The Innovator's Solution: Creating and Sustaining Successful Growth (Clayton M. Christensen; Michael E. Raynor)
+- Your Highlight on Page 12 | Location 170-172 | Added on Wednesday, April 3, 2019 8:40:13 PM
+
+Financial markets relentlessly pressure executives to grow and keep growing faster and faster. Is it possible to succeed with this mandate? Don’t the innovations that can satisfy investors’ demands for growth require taking risks that are unacceptable to those same investors? Is there a way out of this dilemma?
+==========
+`;
+
 module.exports = {
   single,
   multiple,
   withDuplicates,
   withBookmarks,
+  alternateFormat,
 };
