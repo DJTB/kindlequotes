@@ -1,5 +1,42 @@
-.idea
+# OS Files
+*.swp
+*~
+._*
+.DS_Store
+*.ipr
+*.iml
+*.iws
+.idea/
+.vscode/
+.env
+.env.production
+
+# Build directory
+lib
+dist
+build
+
+# Node modules
 node_modules
+
+# NPM
+npm-debug.log
+
+# Yarn
+yarn-error.log
+
+# TypeScript
+.tscache
+tscommand-*
+*.tsbuildinfo
+
+# Jest
+coverage
+
+# CI
+codeship.aes
+.env.codeship
+
+# Local dev files
 My Clippings*
 quotes.json
-coverage
